@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_test"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="@string/nav_bar_test"/>
+
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="@string/nav_bar_about" />
+
+    <item android:title="@string/nav_bar_reference">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_yiting"
+                    android:icon="@mipmap/ic_menu_yiting"
+                    android:title="@string/nav_bar_reference_yiting" />
+                <item
+                    android:id="@+id/nav_qianqian"
+                    android:icon="@mipmap/ic_menu_qianqian"
+                    android:title="@string/nav_bar_reference_qianqian" />
+                <item
+                    android:id="@+id/nav_kuwo"
+                    android:icon="@mipmap/ic_menu_kuwo"
+                    android:title="@string/nav_bar_reference_kuwo" />
+                <item
+                    android:id="@+id/nav_qq"
+                    android:icon="@mipmap/ic_menu_qq"
+                    android:title="@string/nav_bar_reference_qq" />
+                <item
+                    android:id="@+id/nav_wangyi"
+                    android:icon="@mipmap/ic_menu_wangyi"
+                    android:title="@string/nav_bar_reference_wangyi" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_bar_language">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_chinese"
+                    android:icon="@mipmap/ic_menu_cn"
+                    android:title="@string/nav_bar_cn" />
+                <item
+                    android:id="@+id/nav_english"
+                    android:icon="@mipmap/ic_menu_en"
+                    android:title="@string/nav_bar_en" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/mini_player_dialog_height"
+    android:minHeight="@dimen/mini_player_dialog_height"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:hint="@string/dialog_name_playlist"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/colorSongHighlight" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
+        android:text="@string/dialog_clear_playlist"
+        android:textAlignment="center"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnCollect"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:layout_margin="8dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/dialog_save_playlist"
+        android:textAlignment="center"
+        android:textColor="@android:color/white" />
+
+    <ListView
+        android:id="@+id/currentPlaylist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:listitem="@layout/custom_songs_list_item" />
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yao Music</string>
+    <string name="app_name_super">Super Yao</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_header_title">Yao Music</string>
+    <string name="nav_header_subtitle">Version 0.1</string>
+    <string name="nav_header_subtitle_super">Version Super 0.1</string>
+
+    <string name="app_bar_search_button">Search</string>
+
+    <string name="tab_song">Song</string>
+    <string name="tab_album">Album</string>
+    <string name="tab_artist">Artist</string>
+    <string name="tab_songlist">List</string>
+    <string name="search_bar_hint">Enter keywords</string>
+
+    <string name="nav_bar_test">Test</string>
+    <string name="nav_bar_about">About</string>
+
+    <string name="nav_bar_reference">Reference</string>
+    <string name="nav_bar_reference_yiting">Yiting</string>
+    <string name="nav_bar_reference_qianqian">Qianqian</string>
+    <string name="nav_bar_reference_kuwo">Kuwo</string>
+    <string name="nav_bar_reference_qq">QQ</string>
+    <string name="nav_bar_reference_wangyi">Netease</string>
+
+    <string name="nav_bar_language">Language</string>
+    <string name="nav_bar_auto">Default</string>
+
+    <string name="img_cover_desc">cover</string>
+    <string name="list_header_clear_history">Clear search history</string>
+    <string name="list_header_clear_history_success">Clear history successfully.</string>
+    <string name="list_footer_more">LOAD</string>
+    <string name="list_footer_no_more">END</string>
+    <string name="task_null_result">Network/Server Error.</string>
+
+    <string name="nav_bar_reference_error">Please select a reference.</string>
+
+    <string name="about_activity_model">Model</string>
+    <string name="about_activity_code">Code</string>
+    <string name="about_activity_author">Author</string>
+    <string name="about_activity_source">Source</string>
+    <string name="about_activity_notice">Notice</string>
+    <string name="about_activity_mmp">This app (Yao Music) is for study only.</string>
+
+    <string name="super_yao_on_click_1">What\'s up?</string>
+    <string name="super_yao_on_click_5">1 minute super mode starts</string>
+    <string name="super_yao_on_click_4">1 more touch to start super mode</string>
+    <string name="super_yao_on_click_3">4 more touches to start super mode</string>
+    <string name="super_yao_on_click_2">7 more touches to start super mode</string>
+
+    <string name="list_item_song_count">Songs</string>
+    <string name="list_item_songs_empty">No songs here.</string>
+    <string name="list_item_songs_error">Network/Server error.</string>
+    <string name="song_play_error">Bad Network</string>
+    <string name="dialog_save_playlist">Save Playlist</string>
+    <string name="song_play_error_1">Please hold on for a second!</string>
+    <string name="dialog_clear_playlist">Clear Playlist</string>
+    <string name="song_play_error_2">No Copyright</string>
+    <string name="song_play_error_3">Network Timeout</string>
+    <string name="main_fragment_empty">Playlist Panel</string>
+    <string name="dialog_name_playlist">Give it a name</string>
+    <string name="dialog_playlist_question">To delete the selected playlist</string>
+    <string name="dialog_playlist_yes">Confirm</string>
+    <string name="dialog_playlist_no">Cancel</string>
+
+</resources>

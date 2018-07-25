@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MiniPlayerFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mini_player_height">
+
+        <SeekBar
+            android:id="@+id/loadBar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/mini_player_seekBar_height"
+            android:clickable="false"
+            android:contextClickable="false"
+            android:longClickable="false"
+            android:max="100"
+            android:progressTint="@color/colorPrimary"
+            android:thumb="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/seekBar"
+            app:layout_constraintEnd_toEndOf="@+id/seekBar"
+            app:layout_constraintStart_toStartOf="@+id/seekBar"
+            app:layout_constraintTop_toTopOf="@+id/seekBar" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/mini_player_seekBar_height"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/leftTime"
+            app:layout_constraintStart_toEndOf="@+id/passTime"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ca.mohawk.ma.yaomusic.ui.RoundAngleImageView
+            android:id="@+id/cover"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/option"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/play"
+            app:layout_constraintStart_toEndOf="@+id/cover"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="@string/tab_song"
+                tools:layout_editor_absoluteX="96dp"
+                tools:layout_editor_absoluteY="45dp" />
+
+            <TextView
+                android:id="@+id/artist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="@string/tab_artist"
+                tools:layout_editor_absoluteX="96dp"
+                tools:layout_editor_absoluteY="69dp" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_media_play"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/next"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <ImageButton
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_media_next"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <ImageButton
+            android:id="@+id/option"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:scaleX="0.65"
+            android:scaleY="0.65"
+            android:src="@mipmap/ic_option"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <TextView
+            android:id="@+id/passTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/mini_player_passTime"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/seekBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/seekBar" />
+
+        <TextView
+            android:id="@+id/leftTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/mini_player_leftTime"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/seekBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/seekBar" />
+
+        <ProgressBar
+            android:id="@+id/processing"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/play"
+            app:layout_constraintEnd_toEndOf="@+id/play"
+            app:layout_constraintStart_toStartOf="@+id/play"
+            app:layout_constraintTop_toTopOf="@+id/play" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

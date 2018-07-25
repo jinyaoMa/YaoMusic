@@ -1,0 +1,23 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="song_list_item_height">80dp</dimen>
+    <dimen name="song_list_item_cover_height">64dp</dimen>
+    <dimen name="song_list_item_text_height">28dp</dimen>
+
+    <dimen name="about_list_item_height">64dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="big_top_cover_height">300dp</dimen>
+
+    <dimen name="mini_player_seekBar_height">32dp</dimen>
+    <dimen name="mini_player_dialog_height">500dp</dimen>
+    <dimen name="mini_player_height">100dp</dimen>
+</resources>
