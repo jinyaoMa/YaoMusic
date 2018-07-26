@@ -67,26 +67,7 @@ public class MainActivity extends AppCompatActivity
     final String LANGUAGE_SELECTED = "language";
 
     SharedPreferences sharedPreferences;
-    NavigationView navigationView;
-
-    private int timeoutCount = 1800;
-    private Handler timeout = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            timeoutCount -= 1;
-            if (timeoutCount > 0) {
-                navigationView.getMenu().findItem(R.id.nav_test).setTitle(String.format("%02d:%02d", timeoutCount / 60, timeoutCount % 60));
-                sendEmptyMessageDelayed(0, 1000);
-            } else {
-                navigationView.getMenu().findItem(R.id.nav_test).setTitle(R.string.nav_bar_timer);
-                timeoutCount = 1800;
-                Intent intent = new Intent(MainActivity.this, PlayerService.class);
-                intent.putExtra("action", PlayerService.STOP);
-                startService(intent);
-            }
-        }
-    };
+    public static NavigationView navigationView;
 
     private ComponentName mainPortal;
     private ComponentName aliasPortal;
@@ -280,7 +261,9 @@ public class MainActivity extends AppCompatActivity
             setLanguage(id);
 
         } else if (id == R.id.nav_test) {
-            timeout.sendEmptyMessageDelayed(0, 1000);
+            Intent intent = new Intent(MainActivity.this, PlayerService.class);
+            intent.putExtra("action", PlayerService.TIMER);
+            startService(intent);
         }
 
         switch (id) {

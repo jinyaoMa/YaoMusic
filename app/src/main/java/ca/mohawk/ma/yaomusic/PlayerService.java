@@ -11,7 +11,9 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.support.design.widget.NavigationView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -61,6 +63,7 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
     public static final int INIT = 4;
     public static final int NEXT = 5;
     public static final int SELECT = 6;
+    public static final int TIMER = 7;
 
     public final String REF_YITING = "yiting:";
     public final String REF_QIANQIAN = "qianqian:";
@@ -104,6 +107,27 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
     private Boolean sourceCheck;
 
     private Boolean canNext = false;
+
+    private int timeoutCount = 1800;
+    private Handler timeout = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            timeoutCount -= 1;
+            if (timeoutCount > 0) {
+                MainActivity.navigationView.getMenu().findItem(R.id.nav_test).setTitle(String.format("%02d:%02d", timeoutCount / 60, timeoutCount % 60));
+                MainActivity.navigationView.getMenu().findItem(R.id.nav_test).setEnabled(false);
+                sendEmptyMessageDelayed(0, 1000);
+            } else {
+                MainActivity.navigationView.getMenu().findItem(R.id.nav_test).setTitle(R.string.nav_bar_timer);
+                timeoutCount = 1800;
+                Intent intent = new Intent(PlayerService.this, PlayerService.class);
+                intent.putExtra("action", PlayerService.STOP);
+                startService(intent);
+                MainActivity.navigationView.getMenu().findItem(R.id.nav_test).setEnabled(true);
+            }
+        }
+    };
 
     public PlayerService() {
         playlistDatabaseHelper = new PlaylistDatabaseHelper(this);
@@ -212,6 +236,9 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
             case SELECT:
                 int index = intent.getIntExtra("position", currentIndex);
                 toogleNext(index);
+                break;
+            case TIMER:
+                timeout.sendEmptyMessageDelayed(0, 1000);
                 break;
         }
 
