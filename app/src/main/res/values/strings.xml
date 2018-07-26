@@ -20,7 +20,7 @@
     <string name="search_bar_hint">亲, 把关键字写这儿~</string>
 
     <string name="nav_bar_test">测试</string>
-    <string name="nav_bar_clear_playlist">测试</string>
+    <string name="nav_bar_timer">定时</string>
     <string name="nav_bar_about">关于</string>
 
     <string name="nav_bar_reference">来源</string>

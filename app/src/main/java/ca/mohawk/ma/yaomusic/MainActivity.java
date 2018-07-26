@@ -69,6 +69,25 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences sharedPreferences;
     NavigationView navigationView;
 
+    private int timeoutCount = 1800;
+    private Handler timeout = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            timeoutCount -= 1;
+            if (timeoutCount > 0) {
+                navigationView.getMenu().findItem(R.id.nav_test).setTitle(String.format("%02d:%02d", timeoutCount / 60, timeoutCount % 60));
+                sendEmptyMessageDelayed(0, 1000);
+            } else {
+                navigationView.getMenu().findItem(R.id.nav_test).setTitle(R.string.nav_bar_timer);
+                timeoutCount = 1800;
+                Intent intent = new Intent(MainActivity.this, PlayerService.class);
+                intent.putExtra("action", PlayerService.STOP);
+                startService(intent);
+            }
+        }
+    };
+
     private ComponentName mainPortal;
     private ComponentName aliasPortal;
     private PackageManager packageManager;
@@ -158,6 +177,8 @@ public class MainActivity extends AppCompatActivity
                         }
                     }, 0, 6000);
             }
+        } else {
+            TSnackbar.make(navigationView.getRootView(), "什么？炒鸡模式？不存在的~", TSnackbar.APPEAR_FROM_BOTTOM_TO_TOP, TSnackbar.LENGTH_LONG).setPromptThemBackground(Prompt.SUCCESS).show();
         }
     }
 
@@ -259,7 +280,7 @@ public class MainActivity extends AppCompatActivity
             setLanguage(id);
 
         } else if (id == R.id.nav_test) {
-            TSnackbar.make(navigationView.getRootView(), "什么？炒鸡模式？不存在的~", TSnackbar.APPEAR_FROM_BOTTOM_TO_TOP, TSnackbar.LENGTH_LONG).setPromptThemBackground(Prompt.SUCCESS).show();
+            timeout.sendEmptyMessageDelayed(0, 1000);
         }
 
         switch (id) {
