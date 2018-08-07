@@ -264,7 +264,11 @@ public class MiniPlayerFragment extends Fragment {
     }
 
     public static void refresh() {
-        togglePlay(PlayerService.mediaPlayer.isPlaying());
+        if (PlayerService.mediaPlayer != null) {
+            togglePlay(PlayerService.mediaPlayer.isPlaying());
+        } else {
+            togglePlay(false);
+        }
         if (PlayerService.list.size() > 0) {
             cover.setImageURL(PlayerService.list.get(PlayerService.currentIndex).get("cover"));
             title.setText(PlayerService.list.get(PlayerService.currentIndex).get("title"));

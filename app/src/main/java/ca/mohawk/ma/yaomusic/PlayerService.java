@@ -1,5 +1,6 @@
 package ca.mohawk.ma.yaomusic;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -81,6 +82,7 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
     private Double threadCheck;
     private final int INITIAL = 0;
     private final int PROCESS = 1;
+    @SuppressLint("HandlerLeak")
     private Handler updateProgress = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -109,7 +111,9 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
     private Boolean canNext = false;
 
     private int timeoutCount = 1800;
+    @SuppressLint("HandlerLeak")
     private Handler timeout = new Handler() {
+        @SuppressLint("DefaultLocale")
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -223,10 +227,6 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
             case INIT:
                 if (list.size() > 0) {
                     Map<String, String> song = list.get(currentIndex);
-                    String href = song.get("id");
-                    String ref = checkReference(href);
-                    String id = href.replaceFirst(ref, "");
-
                     MiniPlayerFragment.changePlayInfo(song.get("cover"), song.get("title"), song.get("artist"));
                 }
                 break;
@@ -322,7 +322,6 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
         }
 
         try {
-            mediaPlayer.reset();
             MiniPlayerFragment.togglePlay(true);
             mediaPlayer.setDataSource(url);
             if (flag) {
@@ -373,9 +372,9 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
                 }
 
                 try {
-                    mediaPlayer.reset();
                     Uri uri = Uri.parse(path);
                     MiniPlayerFragment.togglePlay(true);
+                    mediaPlayer.reset();
                     mediaPlayer.setDataSource(getApplicationContext(), uri, headers);
                     if (flag) {
                         mediaPlayer.prepareAsync();
@@ -398,18 +397,34 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
-        if (list.size() > 0 && what == -38) {
-            TSnackbar.make(MiniPlayerFragment.view.getRootView(), R.string.song_play_error_1, TSnackbar.APPEAR_FROM_TOP_TO_DOWN).setPromptThemBackground(Prompt.WARNING).show();
-            MiniPlayerFragment.toggleProcessing(true);
+        if (list.size() > 0) {
+            if (what == -38) {
+                TSnackbar.make(MiniPlayerFragment.view.getRootView(), R.string.song_play_error_1, TSnackbar.APPEAR_FROM_TOP_TO_DOWN).setPromptThemBackground(Prompt.WARNING).show();
+                MiniPlayerFragment.toggleProcessing(true);
+            } else if (what == 703 || what == 701) {
+                TSnackbar.make(MiniPlayerFragment.view.getRootView(), R.string.song_play_error_1, TSnackbar.APPEAR_FROM_TOP_TO_DOWN).setPromptThemBackground(Prompt.WARNING).show();
+                MiniPlayerFragment.toggleProcessing(true);
+                new Thread(){
+                    @Override
+                    public void run() {
+                        try {
+                            sleep(15000);
+                            toogleNext();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
+            }
         } else {
-            releaseMediaPlayer();
-            initMediaPlayer();
+            mp.reset();
             MiniPlayerFragment.togglePlay(false);
             canNext = false;
         }
         return false;
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class SongTask extends AsyncTask<String, Map<String, String>, Map<String, String>> {
 
         @Override
@@ -594,7 +609,7 @@ public class PlayerService extends Service implements MediaPlayer.OnBufferingUpd
         protected void onPostExecute(Map<String, String> result) {
             if (result != null) {
                 long rowId = playlistDatabaseHelper.insertSong(result);
-                String url = playlistDatabaseHelper.getSongUrl(String.format("%d", rowId));
+                @SuppressLint("DefaultLocale") String url = playlistDatabaseHelper.getSongUrl(String.format("%d", rowId));
                 if (url == null) {
                     playlistDatabaseHelper.updateSong(result);
                     url = result.get("songPath");
